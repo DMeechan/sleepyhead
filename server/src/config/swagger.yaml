@@ -6,10 +6,10 @@ info:
   version: 1.0.0
 
 servers:
-  - url: "http://localhost:3000/api"
-    description: Local development API
-  - url: "https://sleepyhead-server.onrender.com//api"
-    description: Live production API
+  - url: http://localhost:3000/api
+    description: Development
+  - url: https://sleepyhead-server.onrender.com/api
+    description: Production
 
 paths:
   "/search":
@@ -33,8 +33,29 @@ paths:
   "/sensors":
     post:
       summary: Upload your sensor data in a big ol' JSON blob
+      parameters:
+        - in: query
+          name: username
+          schema:
+            type: string
+          description: Username of the User whose data we're recording
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SensorsInputs'
       responses:
         '204':
           description: OK
-      content:
-        application/json: {}
+
+components:
+  schemas:
+    SensorsInputs:
+      properties:
+        temperature:
+          type: integer
+        luminosity:
+          type: integer
+      required:
+        - temperature
