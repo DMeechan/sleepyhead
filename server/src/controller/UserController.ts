@@ -1,6 +1,7 @@
 import { getRepository } from "typeorm";
 import { Request, Response } from "express";
 import { User, createUser } from "../entity/User";
+import { HTTP404Error } from "../utils/httpErrors";
 
 export class UserController {
   private userRepository = getRepository(User);
@@ -16,6 +17,10 @@ export class UserController {
       where: uuid
     });
 
+    if (!user) {
+      throw new HTTP404Error("user not found");
+    }
+
     return user;
   }
 
@@ -27,6 +32,10 @@ export class UserController {
       .leftJoinAndSelect("sleepCycles.readings", "readings")
       .where("user.uuid = :uuid", { uuid })
       .getOne();
+
+    if (!user) {
+      throw new HTTP404Error("user not found");
+    }
 
     return user;
   }
@@ -46,11 +55,10 @@ export class UserController {
     });
 
     if (!user) {
-      res.status(404).send("User not found");
-      return;
+      throw new HTTP404Error("user not found");
     }
-    const { isSleeping } = user;
 
+    const { isSleeping } = user;
     if (isSleeping) {
       // find and end sleep cycle
     } else {

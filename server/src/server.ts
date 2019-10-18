@@ -30,7 +30,7 @@ try {
   const host = databaseUrl.split("@")[1];
   console.log("Connecting to database:", host);
 
-  const connection = createConnection();
+  createConnection().then(() => console.log("Connected!"));
 
   server.listen(PORT, () =>
     console.log(`Server is running http://localhost:${PORT} ...`)
