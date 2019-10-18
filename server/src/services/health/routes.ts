@@ -6,7 +6,7 @@ export default [
     method: "get",
     handler: [
       async ({  }: Request, res: Response) => {
-        res.status(404).send("Status: ok");
+        res.status(200).send("Status: ok");
       }
     ]
   },
