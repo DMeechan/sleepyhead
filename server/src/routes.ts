@@ -12,25 +12,34 @@ const userRoutes = [
   },
   {
     method: "get",
-    path: prefix + "/user",
+    path: prefix + "/user/:uuid",
     controller: UserController,
     action: "one"
   },
   {
     method: "get",
-    path: prefix + "/user",
+    path: prefix + "/user/:uuid",
     controller: UserController,
     action: "oneWithReadings"
   },
   {
-    method: "get",
+    method: "post",
     path: prefix + "/user",
     controller: UserController,
     action: "save"
   },
   {
-    method: "get",
-    path: prefix + "/user",
+    method: "patch",
+    path: prefix + "/user/:uuid/sleeping",
+    controller: UserController,
+    action: "toggleSleeping"
+  }
+];
+
+const readingRoutes = [
+  {
+    method: "post",
+    path: prefix + "/user/:uuid/reading",
     controller: UserController,
     action: "toggleSleeping"
   }
@@ -51,4 +60,4 @@ const homeRoutes = [
   }
 ];
 
-export const Routes = [...userRoutes, ...homeRoutes];
+export const Routes = [...userRoutes, ...homeRoutes, ...readingRoutes];
