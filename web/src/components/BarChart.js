@@ -48,6 +48,9 @@ export default class BarChart extends Component {
           height={65}
           options={{
             maintainAspectRatio: true,
+            tooltips: {
+              enabled: false
+            },
             legend: {
               display: false
             },
