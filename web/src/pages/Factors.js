@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Content from '../components/Content';
 import FactorStatus from '../components/FactorStatus';
 
 class FactorGrid extends React.Component {
@@ -26,6 +25,7 @@ class FactorGrid extends React.Component {
 export default class Factors extends React.Component {
   render() {
     return <div id="content-container">
+        <header id="bar-graph-title">SOME DAY</header>
         <FactorGrid />
     </div>;
   }
