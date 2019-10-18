@@ -5,7 +5,7 @@ import FactorStatus from '../components/FactorStatus';
 
 class FactorGrid extends React.Component {
     render() {
-        return <div id="factor-grid" className="ui grid">
+        return <div id="padded-top-grid" className="ui grid">
             <div className="four wide column">
                 <FactorStatus score="30" factor="Temperature" colour_class="red-factor" />
             </div>
