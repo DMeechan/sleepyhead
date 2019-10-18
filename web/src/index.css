@@ -25,5 +25,37 @@ code {
   height: 80vh;
   margin-top: 8vh;
   /* chage background to transparent */
-  background: white; 
+  background: white;
+}
+
+#factor-grid {
+    margin: 20px;
+}
+
+#factor-status {
+    color: white;
+    text-align: center;
+    padding: 40px;
+    font-size: 150%;
+}
+
+#factor-status-score {
+    font-size: 300%;
+    padding-bottom: 20px;
+}
+
+a, a:link, a:visited {
+  color: white;
+}
+
+.red-factor {
+    background: #ec5e5e;
+}
+
+.yellow-factor {
+    background: #ecd45e;
+}
+
+.green-factor {
+    background: #94ec5e ;
 }
