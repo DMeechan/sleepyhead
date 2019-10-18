@@ -1,0 +1,40 @@
+---
+openapi: 3.0.0
+info:
+  title: Sleepyhead API
+  description: Update and query your environment sleep data
+  version: 1.0.0
+
+servers:
+  - url: "http://localhost:3000/api"
+    description: Local development API
+  - url: "https://sleepyhead-server.onrender.com//api"
+    description: Live production API
+
+paths:
+  "/search":
+    get:
+      tags:
+      - Search Text
+      summary: Search by places using opencagedata service
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad request
+      content:
+        application/json: {}
+      parameters:
+      - name: q
+        in: query
+        description: Specifies the query string
+        required: true
+        type: string
+  "/sensors":
+    post:
+      summary: Upload your sensor data in a big ol' JSON blob
+      responses:
+        '204':
+          description: OK
+      content:
+        application/json: {}
