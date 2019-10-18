@@ -14,6 +14,21 @@ code {
     monospace;
 }
 
+#back-button {
+  position: fixed;
+  top: 10vh;
+  left: 5vw;
+  color: #141a46;
+  background: #ec8b5e;
+  border: 2px solid #ec8b5e;
+}
+
+#back-button:hover {
+  color: #ec8b5e;
+  background: #141a46;
+  border: 2px solid #ec8b5e;
+}
+
 #content-container {
   height: 80vh;
   margin-top: 8vh;
@@ -25,42 +40,44 @@ code {
 }
 
 #factor-status {
-    color: white;
-    text-align: center;
-    padding: 40px;
-    font-size: 150%;
-    background: #ec8b5e;
+  color: white;
+  text-align: center;
+  padding: 40px;
+  font-size: 150%;
+  background: #ec8b5e;
 }
 
 #factor-status:hover {
-    background: #d97f57;
+  background: #d97f57;
 }
 
 #factor-status-score {
-    font-size: 300%;
-    padding-bottom: 20px;
+  font-size: 300%;
+  padding-bottom: 20px;
 }
 
-#factor-status a, #factor-status a:link, #factor-status a:visited {
+#factor-status a,
+#factor-status a:link,
+#factor-status a:visited {
   color: white;
 }
 
 .red-factor #factor-status-score a,
 .red-factor #factor-status-score a:link,
 .red-factor #factor-status-score a:visited {
-    color: #ec5e5e;
+  color: #ec5e5e;
 }
 
 .yellow-factor #factor-status-score a,
 .yellow-factor #factor-status-score a:link,
 .yellow-factor #factor-status-score a:visited {
-    color: #ecd45e;
+  color: #ecd45e;
 }
 
 .green-factor #factor-status-score a,
 .green-factor #factor-status-score a:link,
 .green-factor #factor-status-score a:visited {
-    color: #94ec5e;
+  color: #94ec5e;
 }
 
 #bar-graph-title {

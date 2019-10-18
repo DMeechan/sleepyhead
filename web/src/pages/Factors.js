@@ -4,29 +4,56 @@ import { Link } from 'react-router-dom';
 import FactorStatus from '../components/FactorStatus';
 
 class FactorGrid extends React.Component {
-    render() {
-        return <div id="padded-top-grid" className="ui grid">
-            <div className="four wide column">
-                <FactorStatus score="30" factor="Temperature" colour_class="red-factor" />
-            </div>
-            <div className="four wide column">
-                <FactorStatus score="75" factor="Factor 2" colour_class="green-factor" />
-            </div>
-            <div className="four wide column">
-                <FactorStatus score="75" factor="Factor 3" colour_class="yellow-factor" />
-            </div>
-            <div className="four wide column">
-                <FactorStatus score="75" factor="Factor 4" colour_class="green-factor" />
-            </div>
+  render() {
+    return (
+      <div id="factor-grid" className="ui grid">
+        <div className="four wide column">
+          <FactorStatus
+            score="30"
+            factor="Temperature"
+            colour_class="red-factor"
+          />
         </div>
-    }
+        <div className="four wide column">
+          <FactorStatus
+            score="75"
+            factor="Factor 2"
+            colour_class="green-factor"
+          />
+        </div>
+        <div className="four wide column">
+          <FactorStatus
+            score="75"
+            factor="Factor 3"
+            colour_class="yellow-factor"
+          />
+        </div>
+        <div className="four wide column">
+          <FactorStatus
+            score="75"
+            factor="Factor 4"
+            colour_class="green-factor"
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default class Factors extends React.Component {
   render() {
-    return <div id="content-container">
-        <header id="bar-graph-title">SOME DAY</header>
-        <FactorGrid />
-    </div>;
+    return (
+      <div>
+        <Link to="/">
+          <button id="back-button" className="circular ui icon huge button">
+            <i className="arrow alternate left icon"></i>
+          </button>
+        </Link>
+        <div id="content-container">
+          <header id="bar-graph-title">SOME DAY</header>
+          <FactorGrid />
+        </div>
+      </div>
+    );
   }
 }
