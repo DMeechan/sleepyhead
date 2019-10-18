@@ -20,36 +20,53 @@ code {
   /* chage background to transparent */
 }
 
+#back-button {
+  position: fixed;
+  top: 10vh;
+  left: 5vw;
+  color: #141a46;
+  background: #ec8b5e;
+  border: 2px solid #ec8b5e;
+}
+
+#back-button:hover {
+  color: #ec8b5e;
+  background: #141a46;
+  border: 2px solid #ec8b5e;
+}
+
 #factor-grid {
-    margin: 20px;
+  margin: 20px;
 }
 
 #factor-status {
-    color: white;
-    text-align: center;
-    padding: 40px;
-    font-size: 150%;
+  color: white;
+  text-align: center;
+  padding: 40px;
+  font-size: 150%;
 }
 
 #factor-status-score {
-    font-size: 300%;
-    padding-bottom: 20px;
+  font-size: 300%;
+  padding-bottom: 20px;
 }
 
-a, a:link, a:visited {
+a,
+a:link,
+a:visited {
   color: white;
 }
 
 .red-factor {
-    background: #ec5e5e;
+  background: #ec5e5e;
 }
 
 .yellow-factor {
-    background: #ecd45e;
+  background: #ecd45e;
 }
 
 .green-factor {
-    background: #94ec5e ;
+  background: #94ec5e;
   background: transparent;
 }
 
