@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Content from '../components/Content';
+import BarChart from '../components/BarChart';
 
 export default class Home extends React.Component {
   render() {
     return (
-      <Content text="home" />
+      <div id="content-container">
+        <BarChart />
+      </div>
     );
   }
 }

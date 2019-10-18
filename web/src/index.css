@@ -1,18 +1,11 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #ec8b5e;
   background: #141a46;
-  background: radial-gradient(
-    circle,
-    #141a46 0%,
-    #141a46 55%,
-    #0f1333 100%
-  );
+  background: radial-gradient(circle, #141a46 0%, #141a46 55%, #0f1333 100%);
   overflow: hidden;
 }
 
@@ -25,7 +18,6 @@ code {
   height: 80vh;
   margin-top: 8vh;
   /* chage background to transparent */
-  background: white;
 }
 
 #factor-grid {
@@ -58,4 +50,10 @@ a, a:link, a:visited {
 
 .green-factor {
     background: #94ec5e ;
+  background: transparent;
+}
+
+#bar-graph-title {
+  font-size: 70px;
+  margin-left: 2vw;
 }
