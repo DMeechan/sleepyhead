@@ -6,12 +6,16 @@
   "scripts": {
     "postinstall": "npx tsc",
     "dev": "tsc-watch --onSuccess \"node ./dist/server.js\"",
-    "start": "npx pm2 start pm2.yaml",
+    "start-pm2": "npx pm2 start pm2.yaml",
+    "start": "node ./dist/server.js",
     "test": "jest"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
+  "engines": {
+    "node": ">=10 <11"
+  },
   "jest": {
     "verbose": true,
     "transform": {
