@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Content from '../components/Content';
 import FactorStatus from '../components/FactorStatus';
 
 class FactorGrid extends React.Component {

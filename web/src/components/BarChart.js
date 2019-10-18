@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Link } from 'react-router-dom';
 import { Bar } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';
 
@@ -43,11 +44,21 @@ export default class BarChart extends Component {
       <div>
         <header id="bar-graph-title">THIS WEEK</header>
         <Bar
+          onElementsClick={elems => {
+            console.log(elems[0]._datasetIndex + ', ' + elems[0]._index);
+            window.location = './factors';
+          }}
           data={data}
           width={100}
           height={65}
           options={{
             maintainAspectRatio: true,
+            events: ['mousemove'], // this is needed, otherwise onHover is not fired
+            onHover: (event, chartElement) => {
+              event.target.style.cursor = chartElement[0]
+                ? 'pointer'
+                : 'default';
+            },
             tooltips: {
               enabled: false
             },
