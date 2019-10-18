@@ -4,8 +4,8 @@
     "version": "1.0.0"
   },
   "host": "localhost:3000",
-  "basePath": "/api/v1",
-  "schemes": ["http"],
+  "basePath": "/api",
+  "schemes": ["http", "https"],
   "produces": ["application/json"],
   "paths": {
     "/search": {
@@ -33,6 +33,25 @@
           }
         ]
       }
+    },
+    "/sensors": {
+      "post": {
+        "summary": "Upload your sensor data in a big ol' JSON blob",
+        "responses": {
+          "204": {
+            "description": "OK"
+          }
+        },
+        "content": {
+          "application/json": {
+            
+          }
+        }
+      }
     }
   }
 }
+
+
+temp
+luminosity
