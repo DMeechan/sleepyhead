@@ -6,10 +6,8 @@ import '../index.css';
 export default class FactorStatus extends React.Component {
     render() {
         return <div id="factor-status" className={this.props.colour_class}>
-            <Link to="/feedback">
-                <div id="factor-status-score">{this.props.score}%</div><br/>
-                {this.props.factor}
-            </Link>
+            <div id="factor-status-score"><Link to="/feedback">{this.props.score}%</Link></div><br/>
+            <Link to="/feedback">{this.props.factor}</Link>
         </div>;
     }
 }

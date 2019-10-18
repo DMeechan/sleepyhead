@@ -10,7 +10,9 @@ export default class Feedback extends React.Component {
             <i class="arrow alternate left icon"></i>
           </button>
         </Link>
-        <div id="content-container">Feedback</div>
+        <div id="content-container">
+          <header id="bar-graph-title">SOME DAY: SOME FACTOR</header>
+        </div>
       </div>
     );
   }
