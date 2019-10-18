@@ -1,7 +1,7 @@
 import React from 'react';
 
-const Content = () => (
-  <div id="content-container">Hello I am the headerader</div>
-);
+import '../index.css';
+
+const Content = ({ text }) => <div id="content-container">{text}</div>;
 
 export default Content;
