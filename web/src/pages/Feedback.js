@@ -6,8 +6,8 @@ export default class Feedback extends React.Component {
     return (
       <div>
         <Link to="/factors">
-          <button id="back-button" class="circular ui icon huge button">
-            <i class="arrow alternate left icon"></i>
+          <button id="back-button" className="circular ui icon huge button">
+            <i className="arrow alternate left icon"></i>
           </button>
         </Link>
         <div id="content-container">

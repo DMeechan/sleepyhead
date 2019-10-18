@@ -14,11 +14,6 @@ code {
     monospace;
 }
 
-#content-container {
-  height: 80vh;
-  margin-top: 8vh;
-}
-
 #back-button {
   position: fixed;
   top: 10vh;
@@ -34,8 +29,14 @@ code {
   border: 2px solid #ec8b5e;
 }
 
+#content-container {
+  height: 80vh;
+  margin-top: 8vh;
+}
+
 #factor-grid {
   margin: 20px;
+  margin-top: 40px;
 }
 
 #factor-status {
@@ -43,6 +44,11 @@ code {
   text-align: center;
   padding: 40px;
   font-size: 150%;
+  background: #ec8b5e;
+}
+
+#factor-status:hover {
+  background: #d97f57;
 }
 
 #factor-status-score {
@@ -50,23 +56,28 @@ code {
   padding-bottom: 20px;
 }
 
-a,
-a:link,
-a:visited {
+#factor-status a,
+#factor-status a:link,
+#factor-status a:visited {
   color: white;
 }
 
-.red-factor {
-  background: #ec5e5e;
+.red-factor #factor-status-score a,
+.red-factor #factor-status-score a:link,
+.red-factor #factor-status-score a:visited {
+  color: #ec5e5e;
 }
 
-.yellow-factor {
-  background: #ecd45e;
+.yellow-factor #factor-status-score a,
+.yellow-factor #factor-status-score a:link,
+.yellow-factor #factor-status-score a:visited {
+  color: #ecd45e;
 }
 
-.green-factor {
-  background: #94ec5e;
-  background: transparent;
+.green-factor #factor-status-score a,
+.green-factor #factor-status-score a:link,
+.green-factor #factor-status-score a:visited {
+  color: #94ec5e;
 }
 
 #bar-graph-title {
