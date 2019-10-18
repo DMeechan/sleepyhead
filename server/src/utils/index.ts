@@ -46,6 +46,7 @@ export const applyRoutes = (routes: Route[], router: Router) => {
               ? res.send(result)
               : undefined
           );
+          // .catch(error => console.error(error));
         } else if (result !== null && result !== undefined) {
           res.json(result);
         }

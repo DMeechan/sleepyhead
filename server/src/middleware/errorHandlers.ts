@@ -1,21 +1,30 @@
 import { Request, Response, NextFunction, Router } from "express";
-import * as ErrorHandler from "../utils/ErrorHandler";
+import { HTTPClientError } from "../utils/httpErrors";
+import { isProduction } from "../utils/situation";
 
 const handle404Error = (router: Router) => {
   router.use((req: Request, res: Response) => {
-    ErrorHandler.notFoundError();
+    res.status(404).send("Whoops, page not found 🤔");
   });
 };
 
 const handleClientError = (router: Router) => {
   router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    ErrorHandler.clientError(err, res, next);
+    if (err instanceof HTTPClientError) {
+      res.status(err.statusCode).send(err.message);
+    } else {
+      next(err);
+    }
   });
 };
 
 const handleServerError = (router: Router) => {
   router.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-    ErrorHandler.serverError(err, res, next);
+    if (isProduction) {
+      res.status(500).send("Internal Server Error 😨");
+    } else {
+      res.status(500).send(err.stack);
+    }
   });
 };
 

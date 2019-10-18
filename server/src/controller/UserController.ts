@@ -1,30 +1,30 @@
 import { getRepository } from "typeorm";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { User, createUser } from "../entity/User";
-import { HTTP404Error } from "../utils/httpErrors";
+import { throwError } from "../utils/httpErrors";
 
 export class UserController {
   private userRepository = getRepository(User);
 
-  async all(req: Request, res: Response) {
+  async all(req: Request, res: Response, next: NextFunction) {
     const users = this.userRepository.find();
     return users;
   }
 
-  async one(req: Request, res: Response) {
+  async one(req: Request, res: Response, next: NextFunction) {
     const { uuid } = req.query;
     const user = await this.userRepository.findOne({
       where: uuid
     });
 
     if (!user) {
-      throw new HTTP404Error("user not found");
+      return throwError(next, 400, "user not found");
     }
 
     return user;
   }
 
-  async oneWithReadings(req: Request, res: Response) {
+  async oneWithReadings(req: Request, res: Response, next: NextFunction) {
     const { uuid } = req.query;
     const user = await this.userRepository
       .createQueryBuilder("user")
@@ -34,13 +34,13 @@ export class UserController {
       .getOne();
 
     if (!user) {
-      throw new HTTP404Error("user not found");
+      return throwError(next, 400, "user not found");
     }
 
     return user;
   }
 
-  async save(req: Request, res: Response) {
+  async save(req: Request, res: Response, next: NextFunction) {
     const userData = req.body;
     const user = createUser(userData);
 
@@ -48,14 +48,14 @@ export class UserController {
     return savedUser;
   }
 
-  async toggleSleeping(req: Request, res: Response) {
+  async toggleSleeping(req: Request, res: Response, next: NextFunction) {
     const { uuid } = req.query;
     const user = await this.userRepository.findOne({
       where: uuid
     });
 
     if (!user) {
-      throw new HTTP404Error("user not found");
+      return throwError(next, 400, "user not found");
     }
 
     const { isSleeping } = user;
