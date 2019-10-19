@@ -96,7 +96,7 @@ export function getQualityScores(
     tvoc: getAverage(scores["tvoc"]) || 0,
     eco2: getAverage(scores["eco2"]) || 0,
     ir: getAverage(scores["ir"]) || 0,
-    blue: getAverage(scores["blue"]) || 0,
+    blue: getAverage(scores["blue"]) * 10 || 0,
     luminance: getAverage(scores["luminance"]) || 0,
     uv: getAverage(scores["uv"]) || 0
   };
