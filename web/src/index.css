@@ -29,6 +29,28 @@ code {
   border: 2px solid #ec8b5e;
 }
 
+#login-container {
+  height: 80vh;
+  margin-top: 8vh;
+  display: flex;
+  align-items: center;
+}
+
+#login-button {
+  background: #ec8b5e !important;
+  color: #141a46 !important;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 30px;
+  margin-top: 10vh;
+}
+
+#input-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 60px;
+  color: #ec8b5e !important;
+  text-align: center;
+}
+
 #content-container {
   height: 80vh;
   margin-top: 8vh;
