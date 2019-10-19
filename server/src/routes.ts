@@ -1,5 +1,6 @@
 import { UserController } from "./controller/UserController";
 import { HomeController } from "./controller/HomeController";
+import { ReadingController } from "./controller/ReadingController";
 
 const prefix = "/api";
 
@@ -40,8 +41,8 @@ const readingRoutes = [
   {
     method: "post",
     path: prefix + "/user/:uuid/reading",
-    controller: UserController,
-    action: "toggleSleeping"
+    controller: ReadingController,
+    action: "save"
   }
 ];
 

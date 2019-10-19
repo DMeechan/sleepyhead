@@ -1,4 +1,5 @@
 import { Router, Request, Response, NextFunction } from "express";
+import { throwError } from "./httpErrors";
 
 type Wrapper = (router: Router) => void;
 
@@ -34,19 +35,22 @@ export const applyRoutes = (routes: Route[], router: Router) => {
   routes.forEach(route => {
     (router as any)[route.method](
       route.path,
-      (req: Request, res: Response, next: Function) => {
+      (req: Request, res: Response, next: NextFunction) => {
         const result = new (route.controller as any)()[route.action](
           req,
           res,
           next
         );
         if (result instanceof Promise) {
-          result.then(result =>
-            result !== null && result !== undefined
-              ? res.send(result)
-              : undefined
-          );
-          // .catch(error => console.error(error));
+          result
+            .then(result =>
+              result !== null && result !== undefined
+                ? res.send(result)
+                : undefined
+            )
+            .catch(error => {
+              return throwError(next, 500, error);
+            });
         } else if (result !== null && result !== undefined) {
           res.json(result);
         }

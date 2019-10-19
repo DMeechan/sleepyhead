@@ -30,11 +30,13 @@ try {
   const host = databaseUrl.split("@")[1];
   console.log("Connecting to database:", host);
 
-  createConnection().then(() => console.log("Connected!"));
+  createConnection().then(() => {
+    console.log("Connected!");
 
-  server.listen(PORT, () =>
-    console.log(`Server is running http://localhost:${PORT} ...`)
-  );
+    server.listen(PORT, () =>
+      console.log(`Server is running http://localhost:${PORT} ...`)
+    );
+  });
 } catch (e) {
   console.error(e);
   process.exit(1);

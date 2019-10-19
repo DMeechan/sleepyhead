@@ -10,7 +10,7 @@ import { SleepCycle } from "./SleepCycle";
 
 @Entity()
 export class User {
-  @Column({ primary: true })
+  @Column({ primary: true, generated: true })
   id: number;
 
   @Column()
@@ -31,9 +31,9 @@ export class User {
   sleepCycles: SleepCycle[];
 }
 
-export function createUser(data: { username: string }) {
+export function createUser(username: string) {
   const user = new User();
-  user.username = data.username;
+  user.username = username;
   user.isSleeping = false;
 
   return user;
