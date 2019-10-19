@@ -49,6 +49,9 @@ export class ReadingController {
     if (readingData.eco2) {
       readings.push(createReading(ReadingType.ECO2, readingData.eco2));
     }
+    if (readingData.noise) {
+      readings.push(createReading(ReadingType.NOISE, readingData.noise));
+    }
     if (readingData.ir) {
       readings.push(createReading(ReadingType.IR, readingData.ir));
     }
