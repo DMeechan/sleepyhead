@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Bar } from 'react-chartjs-2';
 import 'chartjs-plugin-datalabels';
 
+import { getGraphLabels, getBarGraphValues } from '../api';
+
 // const weekday = new Array(7);
 // weekday[0] = 'Sunday';
 // weekday[1] = 'Monday';
@@ -39,6 +41,9 @@ import 'chartjs-plugin-datalabels';
 
 export default class BarChart extends Component {
   render() {
+    let data = JSON.parse(localStorage.getItem('data'));
+    console.log(data);
+
     return (
       <div>
         <header id="graph-title">THIS WEEK</header>
@@ -48,15 +53,17 @@ export default class BarChart extends Component {
             window.location = './factors';
           }}
           data={{
-            datasets: [{
+            datasets: [
+              {
                 backgroundColor: '#ec8b5e',
                 borderColor: '#ec8b5e',
                 borderWidth: 0.1,
                 hoverBackgroundColor: 'rgba(236,139,94,0.7)',
                 hoverBorderColor: '#ec8b5e',
-                data: this.props.chartData.y
-            }],
-            labels: this.props.chartData.x
+                data: [...getBarGraphValues(), 0, 101]
+              }
+            ],
+            labels: getGraphLabels()
           }}
           width={100}
           height={50}

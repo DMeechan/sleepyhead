@@ -6,6 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 
+
 import { PrivateRoute } from './auth/PrivateRoute';
 import Login from './pages/Login';
 import Overview from './pages/Overview';
@@ -24,6 +25,7 @@ const Body = () => (
 );
 
 function App() {
+
   return (
     <div className="ui container">
       <Router>
