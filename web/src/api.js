@@ -25,8 +25,28 @@ export class SleepData {
                         },
                         {
                             "type": "luminosity",
-                            "value": 23,
+                            "value": 46,
                             "createdAt": "2019/10/26:0700"
+                        },
+                        {
+                            "type": "temperature",
+                            "value": 27,
+                            "createdAt": "2019/10/26:0730"
+                        },
+                        {
+                            "type": "luminosity",
+                            "value": 80,
+                            "createdAt": "2019/10/26:0730"
+                        },
+                        {
+                            "type": "temperature",
+                            "value": 35,
+                            "createdAt": "2019/10/26:0740"
+                        },
+                        {
+                            "type": "luminosity",
+                            "value": 10,
+                            "createdAt": "2019/10/26:0750"
                         }
                     ]
                 },
@@ -205,9 +225,9 @@ export class SleepCycle {
         return this.data.factors.get(factor);
     }
 
-    get_readings_for_factor(factor) {
+    get_readings_for_factor(data, factor) {
         let readings = [];
-        this.data.forEach(function(item, index) {
+        data.forEach(function(item, index) {
             if (item.type === factor) {
                 readings.push(item);
             }
@@ -215,14 +235,21 @@ export class SleepCycle {
         return readings;
     }
 
-    get_chart_data_for_factor(factor) {
-        let chart_data = [];
-        this.get_readings_for_factor(factor).forEach(function(reading, index) {
-            chart_data.push({
-                x: parse_date(reading.createdAt),
-                y: reading.value
-            })
+    get_chart_data_for_factors(factors) {
+        let chart_data = {};
+        let self = this;
+        console.log(self);
+        let all_readings = this.data.readings;
+        factors.forEach(function(factor, index) {
+            chart_data[factor] = [];
+            self.get_readings_for_factor(all_readings, factor).forEach(function(reading, index) {
+                chart_data[factor].push({
+                    x: parse_date(reading.createdAt),
+                    y: reading.value
+                })
+            });
         });
+
         return chart_data;
     }
 }
