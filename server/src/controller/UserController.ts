@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import { User, createUser } from "../entity/User";
 import { throwError } from "../utils/httpErrors";
 import { createSleepCycle, SleepCycle } from "../entity/SleepCycle";
-import { Reading } from "../entity/Reading";
+import { Reading, getQualityScores } from "../entity/Reading";
 
 export class UserController {
   private userRepository = getRepository(User);
@@ -113,9 +113,10 @@ export class UserController {
           })
           .getMany();
 
-        console.log({ readings });
+        const { quality, factors } = getQualityScores(readings);
+        console.log({ quality, factors });
+        latestCycle.quality = quality;
 
-        latestCycle.quality = 50;
         await this.sleepCycleRepository.save(latestCycle);
       }
     } else {
