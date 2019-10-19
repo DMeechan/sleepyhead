@@ -10,7 +10,7 @@ export enum ReadingType {
 
 @Entity()
 export class Reading {
-  @Column({ primary: true })
+  @Column({ primary: true, generated: true })
   id: number;
 
   @Column()

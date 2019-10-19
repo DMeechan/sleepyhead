@@ -7,7 +7,7 @@ export class ReadingController {
   private readingRepository = getRepository(Reading);
 
   async save(req: Request, res: Response) {
-    const { uuid } = req.query;
+    const { uuid } = req.params;
     const readingData = req.body;
 
     const reading = createReading(readingData);

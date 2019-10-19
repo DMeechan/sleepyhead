@@ -12,7 +12,7 @@ import { Reading } from "./Reading";
 
 @Entity()
 export class SleepCycle {
-  @Column({ primary: true })
+  @Column({ primary: true, generated: true })
   id: number;
 
   @Column()

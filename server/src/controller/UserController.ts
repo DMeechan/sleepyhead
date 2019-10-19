@@ -6,16 +6,22 @@ import { throwError } from "../utils/httpErrors";
 export class UserController {
   private userRepository = getRepository(User);
 
+  async getOne(uuid: string) {
+    return this.userRepository.findOne({
+      where: {
+        uuid
+      }
+    });
+  }
+
   async all(req: Request, res: Response, next: NextFunction) {
     const users = this.userRepository.find();
     return users;
   }
 
   async one(req: Request, res: Response, next: NextFunction) {
-    const { uuid } = req.query;
-    const user = await this.userRepository.findOne({
-      where: uuid
-    });
+    const { uuid } = req.params;
+    const user = await this.getOne(uuid);
 
     if (!user) {
       return throwError(next, 400, "user not found");
@@ -25,7 +31,7 @@ export class UserController {
   }
 
   async oneWithReadings(req: Request, res: Response, next: NextFunction) {
-    const { uuid } = req.query;
+    const { uuid } = req.params;
     const user = await this.userRepository
       .createQueryBuilder("user")
       .leftJoinAndSelect("user.sleepCycles", "sleepCycles")
@@ -41,18 +47,32 @@ export class UserController {
   }
 
   async save(req: Request, res: Response, next: NextFunction) {
-    const userData = req.body;
-    const user = createUser(userData);
+    const { username } = req.body;
 
+    const usernameIsValid =
+      username && username.length > 0 && username.length < 64;
+    if (!usernameIsValid) {
+      throwError(next, 400, "invalid username");
+    }
+
+    const existingUser = await this.userRepository.findOne({
+      where: {
+        username
+      }
+    });
+    if (existingUser) {
+      throwError(next, 400, "user already exists");
+    }
+
+    const user = createUser(username);
     const savedUser = await this.userRepository.save(user);
+
     return savedUser;
   }
 
   async toggleSleeping(req: Request, res: Response, next: NextFunction) {
-    const { uuid } = req.query;
-    const user = await this.userRepository.findOne({
-      where: uuid
-    });
+    const { uuid } = req.params;
+    const user = await this.getOne(uuid);
 
     if (!user) {
       return throwError(next, 400, "user not found");
