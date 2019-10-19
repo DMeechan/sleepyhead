@@ -61,7 +61,8 @@ export class UserController {
       }
     });
     if (existingUser) {
-      throwError(next, 400, "user already exists");
+      // throwError(next, 400, "user already exists");
+      return existingUser;
     }
 
     const user = createUser(username);
