@@ -7,31 +7,31 @@ class FactorGrid extends React.Component {
   render() {
     return (
       <div id="factor-grid" className="ui grid">
+      <div className="four wide column">
+        <FactorStatus
+          score="63"
+          factor="Air quality"
+          colour_class="yellow-factor"
+        />
+      </div>
         <div className="four wide column">
           <FactorStatus
-            score="30"
-            factor="Temperature"
+            score="22"
+            factor="Light quality"
             colour_class="red-factor"
           />
         </div>
         <div className="four wide column">
           <FactorStatus
-            score="75"
-            factor="Factor 2"
-            colour_class="green-factor"
-          />
-        </div>
-        <div className="four wide column">
-          <FactorStatus
-            score="75"
-            factor="Factor 3"
+            score="53"
+            factor="Noise quality"
             colour_class="yellow-factor"
           />
         </div>
         <div className="four wide column">
           <FactorStatus
-            score="75"
-            factor="Factor 4"
+            score="82"
+            factor="Temperature"
             colour_class="green-factor"
           />
         </div>
@@ -50,7 +50,7 @@ export default class Factors extends React.Component {
           </button>
         </Link>
         <div id="content-container">
-          <header id="graph-title">SOME DAY</header>
+          <header id="graph-title">FRIDAY</header>
           <FactorGrid />
         </div>
       </div>
