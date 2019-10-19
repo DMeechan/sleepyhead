@@ -22,6 +22,30 @@ export class SleepCycle {
   @Column({ nullable: true, default: 0 })
   quality: number;
 
+  @Column({ nullable: true })
+  temperatureQuality: number;
+
+  @Column({ nullable: true })
+  tvocQuality: number;
+
+  @Column({ nullable: true })
+  eco2Quality: number;
+
+  @Column({ nullable: true })
+  noiseQuality: number;
+
+  @Column({ nullable: true })
+  irQuality: number;
+
+  @Column({ nullable: true })
+  blueQuality: number;
+
+  @Column({ nullable: true })
+  luminanceQuality: number;
+
+  @Column({ nullable: true })
+  uvQuality: number;
+
   @Index()
   @CreateDateColumn()
   createdAt: Date;

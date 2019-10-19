@@ -128,7 +128,16 @@ export class UserController {
 
         const { quality, factors } = getQualityScores(readings);
         console.log({ quality, factors });
+
         latestCycle.quality = quality;
+        latestCycle.temperatureQuality = factors.temperature;
+        latestCycle.tvocQuality = factors.tvoc;
+        latestCycle.eco2Quality = factors.eco2;
+        latestCycle.noiseQuality = factors.noise;
+        latestCycle.irQuality = factors.ir;
+        latestCycle.blueQuality = factors.blue;
+        latestCycle.luminanceQuality = factors.luminance;
+        latestCycle.uvQuality = factors.uv;
 
         await this.sleepCycleRepository.save(latestCycle);
       }

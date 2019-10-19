@@ -73,9 +73,23 @@ export async function getReadingsForCycle(
     .getMany();
 }
 
+export type Factors = {
+  temperature: number;
+  tvoc: number;
+  eco2: number;
+  noise: number;
+  ir: number;
+  blue: number;
+  luminance: number;
+  uv: number;
+};
+
 export function getQualityScores(
   readings: Reading[]
-): { quality: number; factors: object } {
+): {
+  quality: number;
+  factors: Factors;
+} {
   // Get every reading score
   let scores: { [key: string]: number[] } = {
     temperature: [],
@@ -93,7 +107,7 @@ export function getQualityScores(
   });
 
   // Calculate average score for each factor
-  const factors: { [key: string]: number } = {
+  const factors: Factors = {
     temperature: getAverage(scores["temperature"]) || 0,
     tvoc: getAverage(scores["tvoc"]) || 0,
     eco2: getAverage(scores["eco2"]) || 0,
