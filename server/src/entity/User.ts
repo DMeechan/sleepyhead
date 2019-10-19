@@ -25,7 +25,7 @@ export class User {
   isSleeping: boolean;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt: Date;
 
   @OneToMany(type => SleepCycle, sleepCycle => sleepCycle.user)
   sleepCycles: SleepCycle[];
