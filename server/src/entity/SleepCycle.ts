@@ -19,16 +19,16 @@ export class SleepCycle {
   @Generated("uuid")
   uuid: string;
 
-  @Column()
+  @Column({ nullable: true, default: 0 })
   quality: number;
 
   @Index()
   @CreateDateColumn()
-  createdAt: string;
+  createdAt: Date;
 
   @Index()
-  @Column()
-  endedAt: string;
+  @Column({ nullable: true, type: Date })
+  endedAt: Date;
 
   @Index()
   @ManyToOne(type => User, user => user.sleepCycles)
@@ -36,4 +36,28 @@ export class SleepCycle {
 
   @OneToMany(type => Reading, reading => reading.sleepCycle)
   readings: Reading[];
+}
+
+export function createSleepCycle(user: User) {
+  const cycle = new SleepCycle();
+  cycle.user = user;
+  cycle.quality = 0;
+  return cycle;
+}
+
+export function getLatestSleepCycle(
+  sleepCycles: SleepCycle[]
+): SleepCycle | null {
+  // Find incomplete sleep cycles
+  const incompleteCycles = sleepCycles
+    .filter(cycle => !cycle.endedAt)
+    .sort()
+    .reverse();
+
+  if (incompleteCycles.length === 0) {
+    return null;
+  }
+
+  const latestCycle = incompleteCycles[0];
+  return latestCycle;
 }
