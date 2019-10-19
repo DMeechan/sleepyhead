@@ -1,11 +1,14 @@
 import { Entity, Column, CreateDateColumn, ManyToOne, Index } from "typeorm";
 import { SleepCycle } from "./SleepCycle";
-import { User } from "./User";
 
 export enum ReadingType {
   TEMPERATURE = "temperature",
-  LUMINOSITY = "luminosity",
-  NOISE = "noise"
+  TVOC = "tvoc", // air quality
+  ECO2 = "eco2", // air quality
+  IR = "ir", // light
+  BLUE = "blue", // light
+  LUMINANCE = "luminance", // light
+  UV = "uv" // light
 }
 
 @Entity()
@@ -35,21 +38,7 @@ export function createReading(data: {
   value: number;
 }): Reading {
   const reading = new Reading();
-
-  switch (data.type) {
-    case "temperature":
-      reading.type = ReadingType.TEMPERATURE;
-      break;
-    case "luminosity":
-      reading.type = ReadingType.LUMINOSITY;
-      break;
-    case "noise":
-      reading.type = ReadingType.NOISE;
-      break;
-    default:
-      throw new Error("reading type not recognised: " + data.type);
-  }
-
+  reading.type = data.type;
   reading.value = data.value;
   return reading;
 }
