@@ -23,7 +23,7 @@ export class Reading {
   type: ReadingType;
 
   @CreateDateColumn()
-  createdAt: string;
+  createdAt: Date;
 
   @Index()
   @ManyToOne(type => SleepCycle, sleepCycle => sleepCycle.readings)

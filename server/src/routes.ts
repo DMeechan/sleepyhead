@@ -15,12 +15,6 @@ const userRoutes = [
     method: "get",
     path: prefix + "/user/:uuid",
     controller: UserController,
-    action: "one"
-  },
-  {
-    method: "get",
-    path: prefix + "/user/:uuid",
-    controller: UserController,
     action: "oneWithReadings"
   },
   {
