@@ -10,5 +10,5 @@ export default [
   handleCors,
   handleBodyRequestParsing,
   handleCompression,
-  handleAPIDocs
+  handleAPIDocs,
 ];
