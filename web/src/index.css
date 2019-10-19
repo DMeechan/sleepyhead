@@ -34,7 +34,7 @@ code {
   margin-top: 8vh;
 }
 
-#factor-grid {
+#padded-top-grid {
   margin: 20px;
   margin-top: 40px;
 }
@@ -80,7 +80,41 @@ code {
   color: #94ec5e;
 }
 
-#bar-graph-title {
+#graph-title {
   font-size: 70px;
   margin-left: 2vw;
+}
+
+#line-graph-score {
+  position: fixed;
+  top: 30vh;
+  left: 10vw;
+  width: 30vw;
+  font-size: 200px;
+  text-align: center;
+}
+
+#line-graph-container {
+  position: fixed;
+  top: 45vh;
+  left: 10vw;
+  height: 45vh;
+  width: 30vw;
+}
+
+#sensor-feedback {
+  position: relative;
+  top: 10vh;
+  float: right;
+  font-family: inherit;
+}
+
+#sensor-feedback header {
+  font-size: 60px;
+  margin: 7vh;
+}
+
+#sensor-feedback ul li {
+  font-size: 40px;
+  margin: 5vh;
 }

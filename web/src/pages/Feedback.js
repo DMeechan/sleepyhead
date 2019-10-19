@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import LineChart from '../components/LineChart';
+
 export default class Feedback extends React.Component {
   render() {
     return (
@@ -11,7 +13,17 @@ export default class Feedback extends React.Component {
           </button>
         </Link>
         <div id="content-container">
-          <header id="bar-graph-title">SOME DAY: SOME FACTOR</header>
+          <LineChart />
+          <div id="sensor-feedback">
+            <header>What can you do?</header>
+            <ul>
+              <li>this</li>
+              <li>this</li>
+              <li>this</li>
+              <li>this</li>
+              <li>this</li>
+            </ul>
+          </div>
         </div>
       </div>
     );

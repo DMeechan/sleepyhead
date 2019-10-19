@@ -50,7 +50,7 @@ export default class Factors extends React.Component {
           </button>
         </Link>
         <div id="content-container">
-          <header id="bar-graph-title">SOME DAY</header>
+          <header id="graph-title">SOME DAY</header>
           <FactorGrid />
         </div>
       </div>

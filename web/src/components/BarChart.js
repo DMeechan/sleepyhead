@@ -41,7 +41,7 @@ export default class BarChart extends Component {
   render() {
     return (
       <div>
-        <header id="bar-graph-title">THIS WEEK</header>
+        <header id="graph-title">THIS WEEK</header>
         <Bar
           onElementsClick={elems => {
             console.log(elems[0]._datasetIndex + ', ' + elems[0]._index);
