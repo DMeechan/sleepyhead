@@ -42,9 +42,27 @@ code {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 30px;
   margin-top: 10vh;
+  border: 2px solid #ec8b5e;
 }
 
-#input-text {
+#login-button:hover {
+  background: #141a46 !important;
+  color: #ec8b5e !important;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 30px;
+  margin-top: 10vh;
+  border: 2px solid #ec8b5e;
+}
+
+#button-text {
+  color: #141a46 !important;
+}
+
+#login-button:hover #button-text {
+  color: #ec8b5e !important;
+}
+
+#user-name {
   font-family: 'Josefin Sans', sans-serif;
   font-size: 60px;
   color: #ec8b5e !important;

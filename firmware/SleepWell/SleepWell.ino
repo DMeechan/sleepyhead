@@ -15,20 +15,27 @@
 #include <ArduinoHttpClient.h>
 #include <WiFi101.h>
 #include <Arduino_JSON.h>
+#include <ArduinoLowPower.h>
+
+#include <Adafruit_GFX.h>
+#include <Adafruit_EPD.h>
+
 #include <Adafruit_BMP280.h>
-#include <RohmMultiSensor.h>
+#include "BH1745NUC.h"
 #include <MAX30105.h>
 #include <Adafruit_SGP30.h>
 #include <Adafruit_VEML6075.h>
 
+WiFiSSLClient wifi;
+HttpClient client = HttpClient(wifi, host, port);
+
+Adafruit_SSD1675 display(width, height, EPD_DC, EPD_RESET, EPD_CS, SRAM_CS, EPD_BUSY);
+
 Adafruit_BMP280 bmp;
-BH1745NUC bh;
+BH1745NUC bh(0x38);
 MAX30105 max;
 Adafruit_SGP30 sgp;
 Adafruit_VEML6075 uv;
-
-WiFiSSLClient wifi;
-HttpClient client = HttpClient(wifi, host, port);
 
 void setup()
 {
@@ -40,8 +47,28 @@ void setup()
     ;
   Serial.println("\n=== SleepWell ===");
 
+  /*display.begin();
+  display.clearBuffer();
+  display.fillScreen(EPD_WHITE);
+  display.setCursor(5, 5);
+  display.setTextColor(0);
+  display.setTextWrap(true);
+  display.setTextSize(2);
+  display.print("SleepWell");
+  display.setTextSize(1);
+  display.display();*/
+
   /* == SENSORS == */
   Serial.println("\nInitialising sensors:");
+  // battery
+  float measuredvbat = analogRead(VBATPIN);
+  measuredvbat *= 2;    // we divided by 2, so multiply back
+  measuredvbat *= 3.3;  // Multiply by 3.3V, our reference voltage
+  measuredvbat /= 1024; // convert to voltage
+  Serial.print("\tBattery: ");
+  Serial.print(measuredvbat);
+  Serial.println("V");
+
   // bmp280
   Serial.print("\tBMP280: ");
   if (!bmp.begin(0x76))
@@ -59,7 +86,7 @@ void setup()
 
   // bh1745
   Serial.print("\tBH1745: ");
-  if (!bh.init())
+  if (bh.init())
   {
     Serial.println("not found!");
     while (1)
@@ -132,6 +159,9 @@ void setup()
     while (1)
       ;
   }
+  WiFi.lowPowerMode();
+  //WiFi.setSleepMode(M2M_PS_MANUAL, 1);
+  //WiFi.requestSleep(2000);
 
   /* == INIT COMPLETE == */
   Serial.println("\nINIT COMPLETE\n");
@@ -144,23 +174,27 @@ void loop()
   JSONVar readings;
 
   /* BMP280 */
-  readings["temp"] = (int)(bmp.readTemperature() + 0.5);
+  readings["temperature"] = (int)(bmp.readTemperature() + 0.5);
 
   /* SGP30 */
   sgp.IAQmeasure();
-  readings["tvoc"] = sgp.TVOC;
-  readings["eco2"] = sgp.eCO2;
+  readings["tvoc"] = map(sgp.TVOC, 0, 500, 100, 0);
+  readings["eco2"] = map(sgp.eCO2, 300, 2000, 100, 0);
 
   /* MAX30105 */
-  readings["ir"] = max.getIR();
+  readings["ir"] = map(max.getIR(), 500, 120000, 100, 0);
 
   /* BH1745 */
-  bh.measure();
-  readings["blue"] = bh.blue;
-  readings["clear"] = bh.clear;
+  unsigned short rgbl[4];
+  bh.get_val(rgbl);
+  readings["blue"] = map(rgbl[2], 0, 65535, 100, 0);
+  readings["luminance"] = map(rgbl[3], 0, 65535, 100, 0);
 
   /* VEML6075 */
-  readings["uv"] = uv.readUVI();
+  readings["uv"] = map((int)((uv.readUVI() * 100.0) + 0.5), 0, 1000, 100, 0);
+
+  /* SPW2430 */
+  readings["noise"] = map(analogRead(A0), 0, 1024, 100, 0);
 
   String contentType = "application/json";
   String postData = JSON.stringify(readings);
@@ -168,7 +202,7 @@ void loop()
   Serial.println(readings);
 
   Serial.println("\nSending POST request");
-  client.post("https://sleepyhead-server.onrender.com/user/2c4ebecc-e000-42d5-93df-27b6e3fe3561/reading", contentType, postData);
+  client.post(url, contentType, postData);
 
   int statusCode = client.responseStatusCode();
   String response = client.responseBody();
@@ -177,5 +211,6 @@ void loop()
   Serial.print("Response: ");
   Serial.println(response);
 
-  delay(1000);
+  //LowPower.deepSleep(2000);
+  delay(2000);
 }

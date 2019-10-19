@@ -44,3 +44,20 @@ export function createSleepCycle(user: User) {
   cycle.quality = 0;
   return cycle;
 }
+
+export function getLatestSleepCycle(
+  sleepCycles: SleepCycle[]
+): SleepCycle | null {
+  // Find incomplete sleep cycles
+  const incompleteCycles = sleepCycles
+    .filter(cycle => !cycle.endedAt)
+    .sort()
+    .reverse();
+
+  if (incompleteCycles.length === 0) {
+    return null;
+  }
+
+  const latestCycle = incompleteCycles[0];
+  return latestCycle;
+}
