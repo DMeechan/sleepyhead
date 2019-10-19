@@ -1,4 +1,11 @@
-import { Entity, Column, CreateDateColumn, ManyToOne, Index } from "typeorm";
+import {
+  Entity,
+  Column,
+  CreateDateColumn,
+  ManyToOne,
+  Index,
+  Repository
+} from "typeorm";
 import { SleepCycle } from "./SleepCycle";
 
 export enum ReadingType {
@@ -33,13 +40,10 @@ export class Reading {
   sleepCycle: SleepCycle;
 }
 
-export function createReading(data: {
-  type: ReadingType;
-  value: number;
-}): Reading {
+export function createReading(type: ReadingType, value: number): Reading {
   const reading = new Reading();
-  reading.type = data.type;
-  reading.value = data.value;
+  reading.type = type;
+  reading.value = value;
   return reading;
 }
 
@@ -50,7 +54,22 @@ function getAverage(array: number[]) {
   }
 
   const average = sum / array.length;
-  return average;
+
+  return Math.round(average);
+}
+
+export async function getReadingsForCycle(
+  repository: Repository<Reading>,
+  sleepCycle: SleepCycle
+) {
+  return repository
+    .createQueryBuilder("reading")
+    .innerJoin("reading.sleepCycle", "sleepCycle")
+    .addSelect("sleepCycle.id")
+    .where("sleepCycle.id = :sleepCycleId", {
+      sleepCycleId: sleepCycle.id
+    })
+    .getMany();
 }
 
 export function getQualityScores(
@@ -87,27 +106,3 @@ export function getQualityScores(
 
   return { quality, factors };
 }
-
-// switch (reading.type) {
-//   case ReadingType.TEMPERATURE:
-//     scores
-//     break;
-//   case ReadingType.TVOC:
-//     scores
-//     break;
-//   case ReadingType.ECO2:
-//     scores
-//     break;
-//   case ReadingType.IR:
-//     scores
-//     break;
-//   case ReadingType.BLUE:
-//     scores
-//     break;
-//   case ReadingType.LUMINANCE:
-//     scores
-//     break;
-//   case ReadingType.UV:
-//     scores
-//     break;
-// }
