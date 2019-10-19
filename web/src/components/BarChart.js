@@ -49,7 +49,7 @@ export default class BarChart extends Component {
           }}
           data={data}
           width={100}
-          height={65}
+          height={50}
           options={{
             maintainAspectRatio: true,
             events: ['mousemove'], // this is needed, otherwise onHover is not fired

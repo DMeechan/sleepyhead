@@ -31,6 +31,8 @@ export class UserController {
   }
 
   async oneWithReadings(req: Request, res: Response, next: NextFunction) {
+    // Order sleep cycles reverse chronologically (latest first)
+    // And order readings chronologically
     const { uuid } = req.params;
     const user = await this.userRepository
       .createQueryBuilder("user")
@@ -61,7 +63,8 @@ export class UserController {
       }
     });
     if (existingUser) {
-      throwError(next, 400, "user already exists");
+      // throwError(next, 400, "user already exists");
+      return existingUser;
     }
 
     const user = createUser(username);
