@@ -12,6 +12,7 @@ export enum ReadingType {
   TEMPERATURE = "temperature",
   TVOC = "tvoc", // air quality
   ECO2 = "eco2", // air quality
+  NOISE = "noise",
   IR = "ir", // light
   BLUE = "blue", // light
   LUMINANCE = "luminance", // light
@@ -80,6 +81,7 @@ export function getQualityScores(
     temperature: [],
     tvoc: [],
     eco2: [],
+    noise: [],
     ir: [],
     blue: [],
     luminance: [],
@@ -95,6 +97,7 @@ export function getQualityScores(
     temperature: getAverage(scores["temperature"]) || 0,
     tvoc: getAverage(scores["tvoc"]) || 0,
     eco2: getAverage(scores["eco2"]) || 0,
+    noise: getAverage(scores["noise"]) || 0,
     ir: getAverage(scores["ir"]) || 0,
     blue: getAverage(scores["blue"]) * 10 || 0,
     luminance: getAverage(scores["luminance"]) || 0,

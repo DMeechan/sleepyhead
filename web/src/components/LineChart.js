@@ -46,6 +46,10 @@ export default class LineChart extends Component {
               scales: {
                 xAxes: [
                   {
+                      type: 'time',
+                      time: {
+                          unit: 'minute'
+                      },
                     gridLines: {
                       zeroLineColor: 'white'
                     }

@@ -57,6 +57,20 @@ export class UserController {
       return throwError(next, 400, "user not found");
     }
 
+    user.sleepCycles.sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
+    );
+
+    user.sleepCycles.forEach((cycle: SleepCycle) => {
+      cycle.readings.sort(
+        (a, b) => a.createdAt.getTime() - b.createdAt.getTime()
+      );
+    });
+
+    if (!user) {
+      return throwError(next, 400, "user not found");
+    }
+
     return user;
   }
 

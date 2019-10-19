@@ -49,6 +49,9 @@ export class ReadingController {
     if (readingData.eco2) {
       readings.push(createReading(ReadingType.ECO2, readingData.eco2));
     }
+    if (readingData.noise) {
+      readings.push(createReading(ReadingType.NOISE, readingData.noise));
+    }
     if (readingData.ir) {
       readings.push(createReading(ReadingType.IR, readingData.ir));
     }
@@ -63,12 +66,18 @@ export class ReadingController {
     if (readingData.uv) {
       readings.push(createReading(ReadingType.UV, readingData.uv));
     }
-    console.log(5);
 
     let savedReadings: Reading[] = [];
     readings.forEach(async (reading: Reading) => {
       reading.sleepCycle = latestCycle;
-      console.log("Adding reading to user", uuid, " : ", reading);
+      console.log(
+        "Adding reading to user",
+        uuid,
+        " : ",
+        reading.type,
+        " : ",
+        reading.value
+      );
       const savedReading = await this.readingRepository.save(reading);
       savedReadings.push(savedReading);
     });
