@@ -129,15 +129,15 @@ export class UserController {
         const { quality, factors } = getQualityScores(readings);
         console.log({ quality, factors });
 
-        latestCycle.quality = quality;
-        latestCycle.temperatureQuality = factors.temperature;
-        latestCycle.tvocQuality = factors.tvoc;
-        latestCycle.eco2Quality = factors.eco2;
-        latestCycle.noiseQuality = factors.noise;
-        latestCycle.irQuality = factors.ir;
-        latestCycle.blueQuality = factors.blue;
-        latestCycle.luminanceQuality = factors.luminance;
-        latestCycle.uvQuality = factors.uv;
+        latestCycle.quality = quality || 0;
+        latestCycle.temperatureQuality = factors.temperature || 0;
+        latestCycle.tvocQuality = factors.tvoc || 0;
+        latestCycle.eco2Quality = factors.eco2 || 0;
+        latestCycle.noiseQuality = factors.noise || 0;
+        latestCycle.irQuality = factors.ir || 0;
+        latestCycle.blueQuality = factors.blue || 0;
+        latestCycle.luminanceQuality = factors.luminance || 0;
+        latestCycle.uvQuality = factors.uv || 0;
 
         await this.sleepCycleRepository.save(latestCycle);
       }
