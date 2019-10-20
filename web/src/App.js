@@ -6,6 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 
+import Footer from './components/Footer'
 
 import { PrivateRoute } from './auth/PrivateRoute';
 import Login from './pages/Login';
@@ -31,6 +32,7 @@ function App() {
       <Router>
         <Body />
       </Router>
+      <Footer />
     </div>
   );
 }
