@@ -21,7 +21,6 @@ What things you need to install the software and how to install them
 
 - Install [Git](https://git-scm.com/)
 - Install [Node.js](https://nodejs.org/en/) (Node 12 LTS is recommended)
-- Install [Yarn](https://yarnpkg.com)
 - Have a [Postgres](https://www.postgresql.org/) database running locally or in the cloud (you'll need the credentials for it)
 
 - Prerequisites for embedded devices... *(TODO)*
@@ -59,13 +58,13 @@ Open up the `.env` file and edit the database URL to point to your own Postgres 
 Next, install depencencies:
 
 ```bash
-yarn install
+npm install
 ```
 
 Start a local development server:
 
 ```bash
-yarn run dev
+npm run dev
 ```
 
 Now visit `http://localhost:3000` to check that your API server works!
@@ -82,13 +81,13 @@ cd web
 Install depencencies:
 
 ```bash
-yarn install
+npm install
 ```
 
 Start a local development server:
 
 ```bash
-yarn run start
+npm run start
 ```
 
 
@@ -136,7 +135,7 @@ You can deploy the React web app as a static site for free with providers like N
 Build command:
 
 ```bash
-cd web && yarn && yarn build
+cd web && npm && npm run build
 ```
 
 Start command:
