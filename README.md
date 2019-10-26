@@ -159,7 +159,7 @@ You can deploy the React web app as a static site for free with providers like N
 Build command:
 
 ```bash
-cd web && npm && npm run build
+cd web && npm i && npm run build
 ```
 
 Start command:
