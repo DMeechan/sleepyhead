@@ -4,6 +4,30 @@ Sleepyhead helps improve your sleep quality by measuring how your environment af
 
 Created in 12 hours for [Jisc IoT Hackathon](https://www.jisc.ac.uk/rd/get-involved/take-part-in-our-hackathon) in Glasgow.
 
+## What does it look like?
+
+Here's some screenshots from the web app:
+
+Login:
+![login][login]
+
+This Week:
+![week][week]
+
+Tuesday summary:
+![tuesday][tuesday]
+
+Light quality on Friday:
+![light][light]
+
+[light]: https://github.com/DMeechan/sleepyhead/blob/master/media/light-quality.png?raw=true "Light quality"
+
+[login]: https://github.com/DMeechan/sleepyhead/blob/master/media/login.png?raw=true "Login"
+
+[week]: https://github.com/DMeechan/sleepyhead/blob/master/media/this-week.png?raw=true "This Week"
+
+[tuesday]: https://github.com/DMeechan/sleepyhead/blob/master/media/tuesday.png?raw=true "Tuesday"
+
 ## Getting Started
 
 This project is split into two sections:
