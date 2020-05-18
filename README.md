@@ -1,15 +1,17 @@
 # Sleepyhead
 
-Sleepyhead helps improve your sleep quality by measuring how your environment affects your sleep (using factors like light, noise, air quality, and temperature) and giving personalised suggestions on how you can improve your environment to get better sleep.
+We built Sleepyhead to help improve your sleep quality.
 
-Created in 12 hours for [Jisc IoT Hackathon](https://www.jisc.ac.uk/rd/get-involved/take-part-in-our-hackathon) in Glasgow.
+Sleepyhead measures how your bedroom affects your sleep (via light, noise, air quality, and temperature) and gives suggestions on how you can change your environment to get better sleep
+
+Our team of 4 created Sleepyhead in 12 hours for [Jisc IoT Hackathon](https://www.jisc.ac.uk/rd/get-involved/take-part-in-our-hackathon) in Glasgow and won.
 
 ## What does it look like?
 
 Here's some screenshots from the web app:
 
-Login:
-![login][login]
+Light quality on Friday:
+![light][light]
 
 This Week:
 ![week][week]
@@ -17,8 +19,8 @@ This Week:
 Tuesday summary:
 ![tuesday][tuesday]
 
-Light quality on Friday:
-![light][light]
+Login:
+![login][login]
 
 [light]: https://github.com/DMeechan/sleepyhead/blob/master/media/light-quality.png?raw=true "Light quality"
 
