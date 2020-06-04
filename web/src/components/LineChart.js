@@ -11,7 +11,7 @@ const data = {
       pointRadius: 0,
       fill: false,
       borderWidth: 4,
-      data: [100, 50, 0, 67, 12, 89, 65, 0, 100]
+      data: [20, 25, 23, 30, 40, 65, 45, 17, 24]
     },
     {
       borderColor: 'violet',
@@ -19,7 +19,7 @@ const data = {
       pointRadius: 0,
       fill: false,
       borderWidth: 4,
-      data: [30, 96, 87, 12, 50, 90, 50, 0, 100]
+      data: [60, 55, 87, 74, 87, 42, 52, 42, 45]
     }
   ]
 };
@@ -28,8 +28,8 @@ export default class LineChart extends Component {
   render() {
     return (
       <div>
-        <header id="graph-title">SOME DAY: SOME FACTOR</header>
-        <header id="line-graph-score">92%</header>
+        <header id="graph-title">FRIDAY: LIGHT QUALITY</header>
+        <header id="line-graph-score">22%</header>
         <div id="line-graph-container">
           <Line
             data={data}

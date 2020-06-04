@@ -23,11 +23,9 @@ export default class Feedback extends React.Component {
           <div id="sensor-feedback">
             <header>What can you do?</header>
             <ul>
-              <li>this</li>
-              <li>this</li>
-              <li>this</li>
-              <li>this</li>
-              <li>this</li>
+              <li>Try installing blackout blinds</li>
+              <li>Change bulbs to have warmer light</li>
+              <li>Turn off screens and appliances</li>
             </ul>
           </div>
         </div>
